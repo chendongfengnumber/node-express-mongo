@@ -1,0 +1,29 @@
+{
+  "name": "express-mongo",
+  "version": "1.0.0",
+  "description": "使用express搭建的node服务，使用monogo存储数据",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/app.js | bunyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chendongfengnumber/node-express-mongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chendongfengnumber/node-express-mongo/issues"
+  },
+  "homepage": "https://github.com/chendongfengnumber/node-express-mongo#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "bunyan": "^1.8.12",
+    "express": "^4.17.1",
+    "formidable": "^1.2.1",
+    "mongoose": "^5.6.9",
+    "nodemon": "^1.19.1"
+  }
+}
