@@ -1,8 +1,21 @@
 const  express = require('express');
+const cors = require('cors'); // express cors中间件
 const app = express();
+
 
 const logger = require('./http/Logger');
 const routes = require('./routers');
+
+
+const allCors = function(req, res, next) {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  next()
+}
+app.use(allCors);
+// app.use(cors());
+
+
 routes.forEach(item => {
   switch (item.method) {
     case 'GET' :

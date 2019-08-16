@@ -1,23 +1,28 @@
 const formidable = require('formidable');
 const FileDataServices = require('../services/FileDataService');
 const logger = require('../http/Logger');
+const fs = require('fs');
+const path = require('path');
+const lodash = require('lodash');
 
 class FileService {
+
   uploadFile(req,res) {
     const form = new formidable.IncomingForm();
     form.parse(req, async (err, fields, files) => {
       if(err) console.log(err, '解析出错');
-      const result = await FileDataServices.uploadAndSaveFile(files.picture.path);
-      logger.info('上传图片成功', result);
+      logger.info('上传图片解析', files);
+      // 下面的取file属性值，是因为前端在formData.append('file', file);
+      const { path, type, name } = lodash.get(files, 'file') || {};
+      const result = await FileDataServices.uploadAndSaveFile(path, type, name);
+      logger.info('上传图片成功', files);
       res.send(result);
     });
   }
 
-  async downloadFile(req) {
-    const fileId = '5d5126610939131aa307ef68';
-    const result = await FileDataServices.downloadFile(fileId);
-    logger.info('下载图片成功', result);
-    return result;
+  downloadFile(fileId) {
+    const bucketStream = FileDataServices.downloadFile(fileId);
+    return bucketStream;
   }
 }
 
