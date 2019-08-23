@@ -1,10 +1,10 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
-const path = require('path');
+const config = require('config');
 
 const logger = require('../http/Logger');
 let bucket;
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
+mongoose.connect(config.get('MONGODB_URL'), { useNewUrlParser: true })
 .then(() => {
   const conn = mongoose.connection;
   const opts = {
@@ -12,8 +12,6 @@ mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
   };
   bucket = new mongoose.mongo.GridFSBucket(conn.db, opts);
 })
-
-
 
 class FileDataService {
   async saveFile(bucket, pathUrl, type, name) {

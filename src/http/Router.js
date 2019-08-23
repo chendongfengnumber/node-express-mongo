@@ -10,34 +10,34 @@ module.exports = class Router {
     this.all.push(options);
   }
 
-  get(path, callback) {
+  get(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'GET', pathUri, callback });
+    return this.route({ method: 'GET', pathUri, callback, joi });
   }
 
-  post(path, callback) {
+  post(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'POST', pathUri, callback });
+    return this.route({ method: 'POST', pathUri, callback, joi });
   }
 
-  put(path, callback) {
+  put(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'PUT', pathUri, callback });
+    return this.route({ method: 'PUT', pathUri, callback, joi });
   }
 
-  delete(path, callback) {
+  delete(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'DELETE', pathUri, callback });
+    return this.route({ method: 'DELETE', pathUri, callback, joi });
   }
 
-  option(path, callback) {
+  option(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'OPTION', pathUri, callback });
+    return this.route({ method: 'OPTION', pathUri, callback, joi });
   }
 
-  patch(path, callback) {
+  patch(path, callback, joi) {
     const pathUri = `${this.basePath}${path}`;
-    return this.route({ method: 'PATCH', pathUri, callback });
+    return this.route({ method: 'PATCH', pathUri, callback, joi });
   }
 
   routeConfig() {

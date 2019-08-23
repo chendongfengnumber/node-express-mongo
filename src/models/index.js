@@ -1,6 +1,11 @@
 const config = require('config');
 const mongoose = require('mongoose');
 
+const logger = require('../http/Logger');
+
+const User = require('./User');
+const Order = require('./Order');
+
 
 const MONGODB_URL = process.env.MONGODB_URL || config.get('MONGODB_URL');
 
@@ -14,8 +19,11 @@ mongoose.connect(MONGODB_URL, {
   autoReconnect: true
 })
   .then(
-    () => console.log(`数据库 ${MONGODB_URL} 连接成功`),
-    (err) => console.error(`数据库 ${MONGODB_URL} 连接失败`, { err })
+    () => logger.info(`数据库 ${MONGODB_URL} 连接成功`),
+    (err) => logger.error(`数据库 ${MONGODB_URL} 连接失败`, { err })
   );
 
-module.exports = {};
+module.exports = {
+  User,
+  Order
+};
